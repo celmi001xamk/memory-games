@@ -10,8 +10,8 @@ Coming soon: Memory cards
 
 ### Patterns
 
-You will be shown numbers in a random order and you have to memorize the order in 10 seconds.
-After that the numbers will be hidden and you try to click them in numerical order.
+You will be shown numbers in a random order and you have to memorize the order in a timeframe.
+After that the numbers will be hidden and you try to find them in numerical order.
 
 ### Memory Cards
 
