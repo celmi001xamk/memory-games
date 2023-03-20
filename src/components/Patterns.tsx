@@ -20,7 +20,7 @@ const Patterns: React.FC = (): React.ReactElement => {
     const [difficulty, setDifficulty] = useState<number>(10);
     const [gameState, setGameState] = useState<Gamestate>(Gamestate.Off);
     const [prepTime, setPrepTime] = useState<number>(difficulty * 1000);
-    const [countdown, setCountdown] = useState<number>(0);
+    const [countdown, setCountdown] = useState<number>(difficulty);
 
     const handleClickOnCard = (clickedCard: Card): void => {
         if (gameState !== Gamestate.On) return;
@@ -94,6 +94,7 @@ const Patterns: React.FC = (): React.ReactElement => {
     }
 
     const prepCountdown = (): void => {
+        setCountdown(difficulty);
         let countdownEnd: number = new Date().valueOf() + prepTime;
         let countdownInterval = setInterval(() => {
             let timeToEnd = countdownEnd - new Date().valueOf();
@@ -150,7 +151,7 @@ const Patterns: React.FC = (): React.ReactElement => {
                     gameState === Gamestate.Off
                         ? <div className="text-md text-center h-8">Press start to begin</div>
                         : gameState === Gamestate.Prep
-                            ? <div className="text-3xl text-slate-900 text-center h-8">{(countdown > 10 ? countdown.toFixed(0) : countdown.toFixed(1))}
+                            ? <div className="text-3xl text-slate-900 text-center h-8">{(countdown >= 10 ? countdown.toFixed(0) : countdown.toFixed(1))}
                                 <div className="relative bottom-12 border-t-8 border-t-slate-900 border-r-4 border-r-slate-700 border-b-4 border-b-slate-500 rounded-full w-16 h-16 animate-spin"></div>
                             </div>
                             : gameState === Gamestate.On
