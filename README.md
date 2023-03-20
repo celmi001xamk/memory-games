@@ -5,6 +5,7 @@ Simple games to test your memory and beat your hiscores!
 Test it out at: https://celmi001xamk.github.io/memory-games/
 
 Playable: Patterns
+
 Coming soon: Memory cards
 
 ### Patterns
