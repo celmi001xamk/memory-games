@@ -34,12 +34,15 @@ export const PatternsProvider: React.FC<Props> = (props: Props): React.ReactElem
             newCards.push({ value: i, visible: false })
         };
         setCards(newCards);
+        if (localStorage.getItem("patternsHiscore")) {
+            setHiScore(Number(localStorage.getItem("patternsHiscore")));
+        }
     }, [])
 
     const handleClickOnCard = (clickedCard: Card): void => {
         if (gameState !== Gamestate.On) return;
         if (clickedCard.value === score + 1) {
-            setScore(score + 1)
+            setScore(prev => prev + 1)
             const newCards = cards.map(card => {
                 if (card.value === clickedCard.value) {
                     card.visible = true
@@ -47,9 +50,18 @@ export const PatternsProvider: React.FC<Props> = (props: Props): React.ReactElem
                 return card
             });
             setCards(newCards);
+            if (score + 1 === difficulty) {
+                setGameState(Gamestate.Over)
+                if (score >= hiScore) {
+                    const newHiscore = score + 1;
+                    setHiScore(newHiscore);
+                    localStorage.setItem("patternsHiscore", String(newHiscore));
+                }
+            }
         } else {
             setGameState(Gamestate.Off);
             if (score > hiScore) {
+                localStorage.setItem("patternsHiscore", String(score));
                 setHiScore(score);
             }
             setGameState(Gamestate.Over)
